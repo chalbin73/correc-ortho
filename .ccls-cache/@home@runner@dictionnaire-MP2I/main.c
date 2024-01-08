@@ -27,6 +27,15 @@ void ajouter_mot(Liste_Node *dico, char *mot) {
   }
 }
 
+int rechercher_mot(Liste_Node *dico, char *mot) {
+  for(int i = 0; i < strlen(mot); i++) {
+    Node *p = dico->liste[mot[i] - 97];
+  if ( p == NULL){
+    sprintf("T'Con")
+    return 0;
+  }
+  }
+
 int main(void) {
   Liste_Node Dico;
 
