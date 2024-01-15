@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "creation_tableau_verbe.h"
 #include "read_with_mmap.h"
 #include "dictionnaire.h"
 
