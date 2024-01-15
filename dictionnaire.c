@@ -10,14 +10,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdint.h>
 #include "dictionnaire.h"
-
-// Indice lettre "identité" encore une fois car alphabet.h oublié
-uint32_t        indice_lettre(char    lettre)
-{
-    return (uint32_t)lettre;
-}
 
 /**
  * Renvoie un dictionnaire vide initialisé à 0.
@@ -63,7 +56,7 @@ void    ajouter_mot(dictionnaire d, char *mot)
     assert(d != NULL);
     if (mot[0] != '\0' && mot[0] != '/')
     {
-        int indice = indice_lettre( mot[0] );
+        int indice = indice_lettre( (unsigned char *)mot );
         if (indice == -1)
         {
             printf("caractere %s non connu !\n", mot);
@@ -83,15 +76,15 @@ void    ajouter_mot(dictionnaire d, char *mot)
             d->nb_mots++; // non demandé
         }
     }
-    else if(mot[1] == 'a')  //le mot est un verbe du premier groupe
+    else if(mot[1] == 'a' && mot[0] == '/')  //le mot est un verbe du premier groupe
     {
         d->categorie = 2;
     }
-    else if (mot[1] == 'f')   // le mot est un verbe du deuxième groupe
+    else if (mot[1] == 'f'  && mot[0] == '/')   // le mot est un verbe du deuxième groupe
     {
         d->categorie = 3;
     }
-    else if (mot[1] == 'u')   // le mot est un verbe du troisième groupe
+    else if (mot[1] == 'u'  && mot[0] == '/')   // le mot est un verbe du troisième groupe
     {
         d->categorie = 4;
     }
@@ -109,12 +102,12 @@ void    ajouter_mot(dictionnaire d, char *mot)
  * chaque lettre et la suivante existent.
  * Il faut vérifier à la fin que l'élément est 'terminal'.
  */
-bool    chercher_mot(dictionnaire d, char *mot)
+int    chercher_mot(dictionnaire d, char *mot)
 {
     assert(d != NULL);
     if (mot[0] != '\0' && mot[0] != '/')
     {
-        int indice = indice_lettre( mot[0] );
+        int indice = indice_lettre( (unsigned char *)mot );
         if (indice == -1)
         {
             printf("caractere %s non connu !\n", mot);
@@ -124,7 +117,7 @@ bool    chercher_mot(dictionnaire d, char *mot)
         {
             if (d->suivantes[indice] == NULL)
             {
-                return false;
+                return 0;
             }
             else
             {
