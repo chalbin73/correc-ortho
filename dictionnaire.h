@@ -27,7 +27,8 @@
  */
 
 // const int nb_lettres = 42; // pas de VLA au programme !
-#define NB_LETTRES 42
+// Ici NB_LETTRES est a 256, car le fichier alphabet.h/c important été pas procuré dans le zip
+#define NB_LETTRES 256
 /*
  * NB_LETTRES est 'définie' dans le fichier alphabet.h, il s'agit d'une chaîne
  * de caractères qui sera remplacée par 42.

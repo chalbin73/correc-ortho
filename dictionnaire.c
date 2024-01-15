@@ -13,9 +13,10 @@
 #include <stdint.h>
 #include "dictionnaire.h"
 
-uint32_t        indice_lettre(int    lettre)
+// Indice lettre "identité" encore une fois car alphabet.h oublié
+uint32_t        indice_lettre(char    lettre)
 {
-    return lettre;
+    return (uint32_t)lettre;
 }
 
 /**
@@ -62,7 +63,7 @@ void    ajouter_mot(dictionnaire d, char *mot)
     assert(d != NULL);
     if (mot[0] != '\0' && mot[0] != '/')
     {
-        int indice = indice_lettre( (unsigned char *)mot );
+        int indice = indice_lettre( mot[0] );
         if (indice == -1)
         {
             printf("caractere %s non connu !\n", mot);
@@ -113,7 +114,7 @@ bool    chercher_mot(dictionnaire d, char *mot)
     assert(d != NULL);
     if (mot[0] != '\0' && mot[0] != '/')
     {
-        int indice = indice_lettre( (unsigned char *)mot );
+        int indice = indice_lettre( mot[0] );
         if (indice == -1)
         {
             printf("caractere %s non connu !\n", mot);

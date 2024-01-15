@@ -32,7 +32,7 @@ void    ajouter_fichier_dans_dictionnaire(char *fichier, dictionnaire d)
 int    main(void)
 {
 
-    dictionnaire dicoVerbe; // on créé le dico qui possèderas tout les verbe avec leur groupe
+    dictionnaire dicoVerbe = dictionnaire_vide(); // on créé le dico qui possèderas tout les verbe avec leur groupe
     ajouter_fichier_dans_dictionnaire("fr-reforme1990_court_sans.dic", dicoVerbe); // on ajoute les verbes dans le dico
     return 0;
 }
