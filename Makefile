@@ -2,4 +2,4 @@
 .PHONY: all
 
 all:
-	gcc dictionnaire.c main.c -o main
+	gcc dictionnaire.c main.c -Wall -Werror -o main
