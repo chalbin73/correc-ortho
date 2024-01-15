@@ -10,7 +10,7 @@
 #ifndef DICTIONNAIRE_H
 #define DICTIONNAIRE_H 1
 
-#include "alphabet.h"
+// #include "alphabet.h"
 #include <stdbool.h>
 
 /* Remarque : les deux lignes précédentes et la ligne à la toute fin du fichier
@@ -27,6 +27,7 @@
  */
 
 // const int nb_lettres = 42; // pas de VLA au programme !
+#define NB_LETTRES 42
 /*
  * NB_LETTRES est 'définie' dans le fichier alphabet.h, il s'agit d'une chaîne
  * de caractères qui sera remplacée par 42.
@@ -41,26 +42,27 @@
  * mot. Accéder à cette lettre permet de poursuivre le chemin vers une lettre
  * suivante grâce au tableau suivantes.
  */
-struct lettre_s {
-  struct lettre_s *suivantes[NB_LETTRES];
-  int categorie; // 0: le verbe n'existe pas;
-                 // 1: le mot existe et n'est pas un verbe;
-                 // 2: le verbe est du premier groupe;
-                 // 3: le verbe est du second groupe;
-                 // 4: le verbe est du troisième groupe
-  int nb_mots;   // non nécessaire
+struct lettre_s
+{
+    struct lettre_s   *suivantes[NB_LETTRES];
+    int                categorie; // 0: le verbe n'existe pas;
+                                  // 1: le mot existe et n'est pas un verbe;
+                                  // 2: le verbe est du premier groupe;
+                                  // 3: le verbe est du second groupe;
+                                  // 4: le verbe est du troisième groupe
+    int                nb_mots; // non nécessaire
 };
 
-typedef struct lettre_s lettre;
+typedef struct lettre_s    lettre;
 
-typedef lettre *dictionnaire; // un dictionnaire est représenté par un pointeur
-                              // vers une structure de type lettre
+typedef lettre            *dictionnaire; // un dictionnaire est représenté par un pointeur
+                                         // vers une structure de type lettre
 // il est possible de manipuler des lettre* partout à la place.c
 
 /**
  * Renvoie un dictionnaire vide initialisé à 0.
  */
-dictionnaire dictionnaire_vide();
+dictionnaire    dictionnaire_vide();
 
 /**
  * Ajoute un mot à un dictionnaire précédemment créé par un appel à
@@ -69,7 +71,7 @@ dictionnaire dictionnaire_vide();
  * @param d      un dictionnaire
  * @param mot    un mot
  */
-void ajouter_mot(dictionnaire d, char *mot);
+void            ajouter_mot(dictionnaire d, char *mot);
 
 /**
  * Cherche un mot dans un dictionnaire précédemment créé et enrichi.
@@ -78,18 +80,19 @@ void ajouter_mot(dictionnaire d, char *mot);
  * @param mot    un mot
  * @return true  si le mot a été trouvé dans le dictionnaire, false sinon
  */
-bool chercher_mot(dictionnaire d, char *mot);
+bool            chercher_mot(dictionnaire d, char *mot);
 
 /**
  * Libère l'espace mémoire alloué au dictionnaire complet.
  *
  * @param d      un dictionnaire
  */
-void supprimer_dictionnaire(dictionnaire d);
+void            supprimer_dictionnaire(dictionnaire    d);
 
 /* Fonctions ci-dessous non demandées */
-int nombre_de_mots(dictionnaire d);
+int             nombre_de_mots(dictionnaire    d);
 
-int nombre_de_structures(dictionnaire d);
+int             nombre_de_structures(dictionnaire    d);
 
 #endif // DICTIONNAIRE_H
+
